@@ -17,28 +17,23 @@ pip install api5paisa
 ## Usage
 
 ```python
-from api5paisa import *
+from api5paisa import Api5Paisa
 
-#Add Your UserName,Password,TwoFA
-username=''
-password=''
-twofa=''
+api = Api5Paisa()
+api.login("email or clientId", "passowrd", "dob in the format ddMMyyyy")
+#for easy access create ~/.5paisa.conf and user api.login() refer examples/5paisa.conf
 
-r=VerifyEmailStatus(s,username)
-print(r.text)
-print(s.cookies.get_dict())
+#Get Margin
+print(api.get_margin())
 
-r,s=Login(s,username,password,twofa)
-print(r.text)
-print(s.cookies.get_dict())
+#Get Trade Book
+print(api.get_trade_book())
 
-r,s=getHome(s)
-print(r.text.encode("utf-8"))
-print(s.cookies.get_dict())
+#Firing Order
+order_response = api.order('SBIN', 170.2, 1)
+print(order_response)
+print(api.get_order_book())
 
-r=GetMarginData(s)
-print(r)
-print(s.cookies.get_dict())
 ```
 
 ## Documentation
